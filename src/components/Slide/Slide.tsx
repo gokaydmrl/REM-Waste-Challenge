@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { IData } from "../../types/data";
 import React from "react";
 import "../../App.css";
 import { YardSkip } from "../YardSkip/YardSkip";
 import { Price } from "../Price/Price";
+import { HirePeriodDays } from "../HirePeriod/HirePeriod";
+import { Allowances } from "../Allowance/Allowance";
 export const Slide = React.memo(({ item }: { item: IData }) => {
   const [seeDetail, setSeeDetail] = useState(false);
-
-  useEffect(() => {
-    console.log("SLIDE RENDERED");
-  }, []);
 
   return (
     <div style={{ display: "grid" }}>
@@ -34,20 +32,21 @@ export const Slide = React.memo(({ item }: { item: IData }) => {
         </div>
         {seeDetail && (
           <div>
-            <p className="infoText infoHead hire">
-              {item.hire_period_days} of Hire Period
-            </p>
-            <p className="infoText infoHead allowance">
-              {item.allowed_on_road
-                ? "Allowed on road"
-                : "🚫 It is not allowed on road"}{" "}
-            </p>
-            <p className="infoText infoHead allowance">
-              {" "}
-              {item.allows_heavy_waste
-                ? "allows heavy waste"
-                : "🚫 not allow heavy waste"}{" "}
-            </p>
+            <HirePeriodDays hire_period_days={item.hire_period_days} />
+            <Allowances
+              allowance={item.allowed_on_road}
+              text={
+                item.allowed_on_road ? "Allowed On Road" : "Not Allowed On Road"
+              }
+            />
+            <Allowances
+              allowance={item.allows_heavy_waste}
+              text={
+                item.allows_heavy_waste
+                  ? "Allows Heavy Waste"
+                  : "Not Allows Heavy Waste"
+              }
+            />
           </div>
         )}
       </div>

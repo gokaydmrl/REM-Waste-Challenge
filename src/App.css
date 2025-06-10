@@ -161,9 +161,6 @@ p {
   color: black;
 }
 
-.allowance {
-  text-align: right;
-}
 .selectButton {
   background-color: rgb(235, 118, 118);
   position: absolute;

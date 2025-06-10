@@ -1,0 +1,15 @@
+.textRight {
+  text-align: right;
+}
+.allowed {
+  color: green;
+}
+.allowed::after {
+  content: "🟢";
+}
+.notAllowed {
+  color: red;
+}
+.notAllowed::after {
+  content: "⛔";
+}

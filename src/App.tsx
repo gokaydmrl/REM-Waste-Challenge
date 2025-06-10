@@ -16,6 +16,7 @@ import { Steps } from "./components/Steps/Steps";
 import { SelectButton } from "./components/Buttons/SelectButton";
 import { FilterButtons } from "./components/Filters/FilterButtons";
 import { useData } from "./context/DataContext";
+import { Loading } from "./components/LoadingSceleton/Loading";
 
 function App() {
   const slidesPerView = useScreenSize();
@@ -27,7 +28,7 @@ function App() {
       <Header size={1} text="Choose Your Skip Size" />
       <Header size={2} text="Select the skip size that best suits your needs" />
       <Header size={3} text="Filter By" />
-
+      {!data.length && <Loading />}
       <FilterButtons />
       {showModal && <Modal />}
       <Swiper
