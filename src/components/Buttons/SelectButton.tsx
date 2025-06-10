@@ -10,16 +10,7 @@ export const SelectButton = ({
   item: IData;
 }) => {
   return (
-    <button
-      onClick={callBack}
-      className="selectButton"
-      style={{
-        position: "absolute",
-        right: "12px",
-        top: "12px",
-        color: "white",
-      }}
-    >
+    <button onClick={callBack} className="selectButton">
       {selectedItem && selectedItem.id === item.id ? "Continue ✔️" : "Select"}
     </button>
   );

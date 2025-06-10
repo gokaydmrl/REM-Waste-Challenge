@@ -148,7 +148,7 @@ p {
 }
 .area::before {
   content: "🚛";
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 .price {
   color: blue;
@@ -166,6 +166,10 @@ p {
 }
 .selectButton {
   background-color: rgb(235, 118, 118);
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: white;
 }
 .seeDetailButton {
   color: rgb(223, 182, 107);
