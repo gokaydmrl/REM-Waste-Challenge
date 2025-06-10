@@ -12,7 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --font-size--small: 0.875rem; /* base 14px */
+  --font-size--small: 0.8rem; /* base 14px */
   --font-size--default: 1rem; /* base 16px */
   --font-size--large: 1.5rem; /* base 24px */
   --font-size--md: 1.25rem; /* base 24px */
@@ -81,10 +81,7 @@ button:focus-visible {
 }
 
 @media (min-width: 768px) {
-  :root {
-    --font-size--small: 1rem; /* larger small */
-    --font-size--default: 1.125rem; /* larger default */
-    --font-size--large: 2rem; /* larger large */
-    --font-size--md: 1.5rem; /* larger large */
+  html {
+    font-size: 16px;
   }
 }

@@ -10,7 +10,7 @@ export const CurrentStep = React.memo(() => {
     <div className="stepWrapper currentStep">
       <Header size={3} text="Current Step" />
       <StepsParent>
-        <a>{steps[activeStep]}</a>
+        <a className="font-size--small">{steps[activeStep]}</a>
       </StepsParent>
     </div>
   );

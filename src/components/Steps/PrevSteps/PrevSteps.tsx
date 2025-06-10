@@ -12,7 +12,7 @@ export const PrevStep = React.memo(() => {
       <StepsParent>
         {steps.slice(0, activeStep).map((item) => {
           return (
-            <a key={item} style={{ cursor: "pointer" }}>
+            <a className="font-size--small" key={item} style={{ cursor: "pointer" }}>
               {item}
             </a>
           );

@@ -8,9 +8,11 @@ import pic from "../assets/14-yarder-skip.jpg";
 export const useCachedData = ({
   cacheKey,
   asc,
+  yardSkipFilterAsc,
 }: {
   cacheKey: TCacheKey;
   asc: boolean;
+  yardSkipFilterAsc: boolean;
 }) => {
   const axiosClient = useAxios();
   const [data, setData] = useState<IData[]>(caches[cacheKey].data);
@@ -50,9 +52,21 @@ export const useCachedData = ({
     setData(dataFilteredDataByPrice);
   }, [asc, data]);
 
+  const filteredDataByYardSkip = useCallback(() => {
+    const dataFilteredDataByPrice = data.slice().sort((a, b) => {
+      return yardSkipFilterAsc ? b.size! - a.size! : a.size! - b.size!;
+    });
+    setData(dataFilteredDataByPrice);
+  }, [yardSkipFilterAsc, data]);
+
   const cleanFilter = () => {
     setData(caches[cacheKey].data);
   };
 
-  return { data: dataWithPic, filteredDataByPrice, cleanFilter };
+  return {
+    data: dataWithPic,
+    filteredDataByPrice,
+    cleanFilter,
+    filteredDataByYardSkip,
+  };
 };

@@ -12,7 +12,7 @@ export const NextStep = React.memo(() => {
       <StepsParent>
         {steps.slice(activeStep + 1, steps.length).map((item) => {
           return (
-            <a key={item} className="nextStep">
+            <a key={item} className="nextStep font-size--small">
               {item}
             </a>
           );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import "./index.css";
 import { useCachedData } from "./hooks/useCachedData";
@@ -24,13 +24,18 @@ import { Slide } from "./components/Slide/Slide";
 import { Nav } from "./components/Nav/Nav";
 import { Header } from "./components/Header/Header";
 import { Steps } from "./components/Steps/Steps";
+import { SelectButton } from "./components/Buttons/SelectButton";
+import { FilterButtons } from "./components/Filters/FilterButtons";
+import { FilterButton } from "./components/Filters/FilterButton";
 
 function App() {
   const [priceFilterAsc, setPriceFilterAsc] = useState(true);
+  const [yardSkipFilterAsc, setYardSkipFilterAsc] = useState(true);
 
-  const { data, filteredDataByPrice } = useCachedData({
+  const { data, filteredDataByPrice, filteredDataByYardSkip } = useCachedData({
     cacheKey: "MAINDATA",
     asc: priceFilterAsc,
+    yardSkipFilterAsc: yardSkipFilterAsc,
   });
 
   const slidesPerView = useScreenSize();
@@ -52,9 +57,10 @@ function App() {
     filteredDataByPrice();
   };
 
-  useEffect(() => {
-    console.log("rendered");
-  }, []);
+  const handleSetYardSkipChange = () => {
+    setYardSkipFilterAsc((prev) => !prev);
+    filteredDataByYardSkip();
+  };
 
   return (
     <div className="mainWrapper">
@@ -62,18 +68,19 @@ function App() {
       <Header size={1} text="Choose Your Skip Size" />
       <Header size={2} text="Select the skip size that best suits your needs" />
       <Header size={3} text="Filter By" />
-      <div className="dispFlex flexColumn gap12 pdBt16">
-        <a
-          onClick={() => handleSetPriceChange()}
-          style={{
-            backgroundColor: "inherit",
-            color: "navy",
-            cursor: "pointer",
-          }}
-        >
-          Price {priceFilterAsc ? "⬆️" : "⬇️"}
-        </a>
-      </div>
+
+      <FilterButtons>
+        <FilterButton
+          type="Price"
+          handleFilter={handleSetPriceChange}
+          isAsc={priceFilterAsc}
+        />
+        <FilterButton
+          type="Yard Skip"
+          handleFilter={handleSetYardSkipChange}
+          isAsc={yardSkipFilterAsc}
+        />
+      </FilterButtons>
       {showModal && <Modal setShowModal={setShowModal} {...selectedItem} />}
       <Swiper
         mousewheel={true}
@@ -89,22 +96,14 @@ function App() {
       >
         {data.map((item) => {
           return (
-            <SwiperSlide key={item.id} className="swiperSlider" style={{}}>
-              <button
-                onClick={() => handleSelect(item)}
-                className="selectButton"
-                style={{ position: "absolute", right: "12px", top: "12px" }}
-              >
-                {selectedItem && selectedItem.id === item.id
-                  ? "Continue ✔️"
-                  : "Select"}
-              </button>
-              <Slide
+            <SwiperSlide key={item.id} className="swiperSlider">
+              <SelectButton
+                callBack={() => handleSelect(item)}
                 item={item}
-                // isSelected={
-                //   selectedItem !== null && selectedItem.id === item.id
-                // }
+                selectedItem={selectedItem}
               />
+
+              <Slide item={item} />
             </SwiperSlide>
           );
         })}
