@@ -17,8 +17,6 @@ export const useCachedData = ({
   const isCacheValid = isCacheExpired(cacheKey);
   useEffect(() => {
     if (isCacheValid && data.length && caches[cacheKey].data.length) {
-      // setData(data);
-      console.log("returned cached data", data);
       return;
     }
 
@@ -32,11 +30,9 @@ export const useCachedData = ({
           },
         }
       );
-      console.log(data);
       caches[cacheKey].data = data;
       setData(data);
       caches[cacheKey].expiresAt = Date.now() + 10 * 60 * 1000;
-      console.log("returnd AXIOS");
     };
     fetchD();
   }, [axiosClient, data, cacheKey, isCacheValid]);
@@ -51,12 +47,10 @@ export const useCachedData = ({
         ? b.price_before_vat! - a.price_before_vat!
         : a.price_before_vat! - b.price_before_vat!;
     });
-    console.log("dataFilteredDataByPrice", dataFilteredDataByPrice);
     setData(dataFilteredDataByPrice);
   }, [asc, data]);
 
   const cleanFilter = () => {
-    console.log("clean filter", caches[cacheKey].data);
     setData(caches[cacheKey].data);
   };
 
