@@ -1,0 +1,9 @@
+.nextStepWrapper {
+  width: 100%;
+  text-align: right;
+  padding: 12px;
+}
+.nextStep {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
