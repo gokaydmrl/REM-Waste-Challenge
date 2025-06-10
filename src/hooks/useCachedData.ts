@@ -1,20 +1,12 @@
 import type { TCacheKey } from "../types/cacheKeys";
 import type { IData } from "../types/data";
 import { caches } from "../cachedData";
-import { useCallback, useEffect, useState } from "react";
-import { useAxios } from "./useAxios";
+import { useEffect, useState } from "react";
 import { isCacheExpired } from "../helpers/isCacheExpired";
 import pic from "../assets/14-yarder-skip.jpg";
-export const useCachedData = ({
-  cacheKey,
-  asc,
-  yardSkipFilterAsc,
-}: {
-  cacheKey: TCacheKey;
-  asc: boolean;
-  yardSkipFilterAsc: boolean;
-}) => {
-  const axiosClient = useAxios();
+import { useAxiosContext } from "../context/AxiosContext";
+export const useCachedData = ({ cacheKey }: { cacheKey: TCacheKey }) => {
+  const axiosClient = useAxiosContext();
   const [data, setData] = useState<IData[]>(caches[cacheKey].data);
   const isCacheValid = isCacheExpired(cacheKey);
   useEffect(() => {
@@ -22,7 +14,7 @@ export const useCachedData = ({
       return;
     }
 
-    const fetchD = async () => {
+    const fetchData = async () => {
       const { data }: { data: IData[] } = await axiosClient.get(
         "/skips/by-location",
         {
@@ -36,37 +28,15 @@ export const useCachedData = ({
       setData(data);
       caches[cacheKey].expiresAt = Date.now() + 10 * 60 * 1000;
     };
-    fetchD();
+    fetchData();
   }, [axiosClient, data, cacheKey, isCacheValid]);
   const dataWithPic = data.map((item) => ({
     ...item,
     pic,
   }));
 
-  const filteredDataByPrice = useCallback(() => {
-    const dataFilteredDataByPrice = data.slice().sort((a, b) => {
-      return asc
-        ? b.price_before_vat! - a.price_before_vat!
-        : a.price_before_vat! - b.price_before_vat!;
-    });
-    setData(dataFilteredDataByPrice);
-  }, [asc, data]);
-
-  const filteredDataByYardSkip = useCallback(() => {
-    const dataFilteredDataByPrice = data.slice().sort((a, b) => {
-      return yardSkipFilterAsc ? b.size! - a.size! : a.size! - b.size!;
-    });
-    setData(dataFilteredDataByPrice);
-  }, [yardSkipFilterAsc, data]);
-
-  const cleanFilter = () => {
-    setData(caches[cacheKey].data);
-  };
-
   return {
     data: dataWithPic,
-    filteredDataByPrice,
-    cleanFilter,
-    filteredDataByYardSkip,
+    setData,
   };
 };

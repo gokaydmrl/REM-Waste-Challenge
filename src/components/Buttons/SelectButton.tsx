@@ -11,7 +11,7 @@ export const SelectButton = ({
 }) => {
   return (
     <button onClick={callBack} className="selectButton">
-      {selectedItem && selectedItem.id === item.id ? "Continue ✔️" : "Select"}
+      {selectedItem && selectedItem.id === item.id ? "Selected ✔️" : "Select"}
     </button>
   );
 };

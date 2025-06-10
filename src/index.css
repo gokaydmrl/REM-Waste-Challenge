@@ -14,8 +14,8 @@
 
   --font-size--small: 0.8rem; /* base 14px */
   --font-size--default: 1rem; /* base 16px */
-  --font-size--large: 1.5rem; /* base 24px */
   --font-size--md: 1.25rem; /* base 24px */
+  --font-size--large: 1.5rem; /* base 24px */
 }
 
 .swiper-slide-active {
@@ -61,10 +61,6 @@ button:focus-visible {
   outline: none;
   border-color: none;
   border: 1px solid transparent;
-}
-
-.font-size--large {
-  font-size: var(--font-size--large);
 }
 
 @media (prefers-color-scheme: light) {

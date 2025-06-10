@@ -185,11 +185,8 @@ p {
 .swiper-pagination {
   position: inherit;
 }
-.stepWrapper:hover {
-  background-color: #e9e1e1;
-}
 
-.pd-big {
+.pdBig {
   padding: 24px;
 }
 

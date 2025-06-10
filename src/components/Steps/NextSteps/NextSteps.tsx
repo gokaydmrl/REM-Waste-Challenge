@@ -1,14 +1,20 @@
-import React from "react";
 import { Header } from "../../Header/Header";
 import { StepsParent } from "../StepsParent";
 import "./nextStep.css";
-import { getActiveStep } from "../../../helpers/getActiveStep";
-import { steps } from "../steps";
-export const NextStep = React.memo(() => {
-  const activeStep = getActiveStep();
+import { steps } from "../stepsData";
+import { useData } from "../../../context/DataContext";
+export const NextStep = () => {
+  const { setShowModal, selectedItem, activeStep } = useData();
   return (
-    <div className="stepWrapper nextStepWrapper">
-      <Header size={3} text="Next Steps &rarr;" />
+    <div className="stepWrapper nextStepWrapper ">
+      <button
+        className="-font-size--small"
+        onClick={() => setShowModal(true)}
+        disabled={!selectedItem}
+      >
+        Continue &rarr;
+      </button>
+      <Header size={3} text="Next Steps" />
       <StepsParent>
         {steps.slice(activeStep + 1, steps.length).map((item) => {
           return (
@@ -20,4 +26,4 @@ export const NextStep = React.memo(() => {
       </StepsParent>
     </div>
   );
-});
+};

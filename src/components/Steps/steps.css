@@ -1,3 +1,11 @@
 .stepsMainWrapper {
   padding-top: 120px;
 }
+.stepWrapper:hover {
+  background-color: #e9e1e1;
+}
+
+.stepWrapper {
+  width: 100%;
+  padding: 8px;
+}

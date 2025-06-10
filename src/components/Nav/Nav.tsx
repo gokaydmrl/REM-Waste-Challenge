@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./nav.css";
+import logo from "../../assets/logo.jpg";
 export const Nav = React.memo(() => {
-  useEffect(() => {
-    console.log("NAV RENDERED");
-  });
   return (
-    <div className="navWrapper dispFlex flexSpBetween pdBt12">
-      <a href="">HO</a>
-      <a href="">MENU</a>
+    <div className="dispFlex flexSpBetween pdBt12">
+      <a href="">
+        <img src={logo} alt="REM WASTE LOGO" className="logo" />
+      </a>
+      <a className="font-size--large black" href="">
+        ☰
+      </a>
     </div>
   );
 });

@@ -1,19 +1,11 @@
-import type { Dispatch, SetStateAction } from "react";
 import "./modal.css";
 import { YardSkip } from "../YardSkip/YardSkip";
 import { HirePeriodDays } from "../HirePeriod/HirePeriod";
 import { Price } from "../Price/Price";
-export const Modal = ({
-  hire_period_days,
-  price_before_vat,
-  size,
-  setShowModal,
-}: {
-  hire_period_days?: number | undefined;
-  price_before_vat?: number | undefined;
-  size?: number | undefined;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
-}) => {
+import { useData } from "../../context/DataContext";
+export const Modal = () => {
+  const { setShowModal, selectedItem } = useData();
+
   return (
     <>
       <div id="myModal" className="modal">
@@ -25,12 +17,14 @@ export const Modal = ({
               options and/or accessories may be featured at additional cost.
             </p>
           </div>
-          <div className="dispFlex pd-big flexSpBetween">
+          <div className="dispFlex pdBig flexSpBetween">
             <div>
-              <YardSkip size={size} />
-              <HirePeriodDays hire_period_days={hire_period_days} />
+              <YardSkip size={selectedItem?.size} />
+              <HirePeriodDays
+                hire_period_days={selectedItem?.hire_period_days}
+              />
             </div>
-            <Price price_before_vat={price_before_vat} />
+            <Price price_before_vat={selectedItem?.price_before_vat} />
           </div>
           <div className="modal-footer">
             <button
