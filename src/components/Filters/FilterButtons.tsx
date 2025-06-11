@@ -1,7 +1,8 @@
 import { FilterButton } from "./FilterButton";
 import { useData } from "../../context/DataContext";
+import React from "react";
 
-export const FilterButtons = () => {
+export const FilterButtons = React.memo(() => {
   const {
     priceFilterAsc,
     handleSetPriceChange,
@@ -22,4 +23,4 @@ export const FilterButtons = () => {
       />
     </div>
   );
-};
+});

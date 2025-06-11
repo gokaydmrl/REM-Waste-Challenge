@@ -6,7 +6,7 @@ import { YardSkip } from "../YardSkip/YardSkip";
 import { Price } from "../Price/Price";
 import { HirePeriodDays } from "../HirePeriod/HirePeriod";
 import { Allowances } from "../Allowance/Allowance";
-export const Slide = React.memo(({ item }: { item: IData }) => {
+export const Slide = ({ item }: { item: IData }) => {
   const [seeDetail, setSeeDetail] = useState(false);
 
   return (
@@ -52,4 +52,4 @@ export const Slide = React.memo(({ item }: { item: IData }) => {
       </div>
     </div>
   );
-});
+};

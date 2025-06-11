@@ -4,7 +4,7 @@ import { StepsParent } from "../StepsParent";
 import "./currentStep.css";
 import { steps } from "../stepsData";
 import { useData } from "../../../context/DataContext";
-export const CurrentStep = React.memo(() => {
+export const CurrentStep = () => {
   const { activeStep } = useData();
   return (
     <div className="stepWrapper currentStep">
@@ -14,4 +14,4 @@ export const CurrentStep = React.memo(() => {
       </StepsParent>
     </div>
   );
-});
+};

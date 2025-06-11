@@ -1,10 +1,9 @@
-import React from "react";
 import { Header } from "../../Header/Header";
 import { StepsParent } from "../StepsParent";
 import { steps } from "../stepsData";
 import "./prevStep.css";
 import { useData } from "../../../context/DataContext";
-export const PrevStep = React.memo(() => {
+export const PrevStep = () => {
   const { activeStep } = useData();
   return (
     <div className="stepWrapper prevStepWrapper">
@@ -25,4 +24,4 @@ export const PrevStep = React.memo(() => {
       </StepsParent>
     </div>
   );
-});
+};
