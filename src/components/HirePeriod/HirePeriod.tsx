@@ -1,4 +1,3 @@
-import React from "react";
 import "./hirePeriod.css";
 import type { IData } from "../../types/data";
 

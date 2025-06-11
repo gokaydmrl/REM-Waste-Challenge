@@ -1,4 +1,3 @@
-import React from "react";
 import "./filterButton.css";
 export const FilterButton = ({
   type,

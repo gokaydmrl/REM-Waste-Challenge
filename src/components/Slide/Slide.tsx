@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { IData } from "../../types/data";
-import React from "react";
 import "../../App.css";
 import { YardSkip } from "../YardSkip/YardSkip";
 import { Price } from "../Price/Price";

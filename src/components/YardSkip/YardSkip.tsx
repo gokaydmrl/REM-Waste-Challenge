@@ -1,4 +1,3 @@
-import React from "react";
 import type { IData } from "../../types/data";
 
 export const YardSkip = ({ size = 0 }: Pick<IData, "size">) => {
