@@ -2,9 +2,7 @@ import { createContext, useContext, useState, useCallback } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useCachedData } from "../hooks/useCachedData";
 import type { IData } from "../types/data";
-// Define allowed page names
 
-// Define the shape of context
 interface DataContextType {
   priceFilterAsc: boolean;
   setPriceFilterAsc: (arg: boolean) => void;

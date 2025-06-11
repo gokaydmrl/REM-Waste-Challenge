@@ -6,10 +6,8 @@ export const KEYS = {
   THIRD: "thirdData",
 } as const;
 
-// Type for keys (e.g., "MAINDATA" | "SECOND" | "THIRD")
 export type TCacheKey = keyof typeof KEYS;
 
-// Type for values (e.g., "mainData" | "secondData" | "thirdData")
 export type TCacheValue = (typeof KEYS)[TCacheKey];
 
 export interface ICachedData {
